@@ -37,7 +37,18 @@ class PaperLogApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appInfo.name,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          surface: Colors.white,
+          background: Colors.white,
+        ),
+        useMaterial3: true,
+      ),
+      darkTheme: ThemeData(
+        colorScheme: const ColorScheme.dark(
+          surface: Colors.black,
+          background: Colors.black,
+        ),
         useMaterial3: true,
       ),
       home: const MainPage(),
