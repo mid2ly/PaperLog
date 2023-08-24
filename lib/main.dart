@@ -5,12 +5,13 @@ import 'package:paperlog/fake_data.dart';
 import 'package:paperlog/posting.dart';
 import 'package:paperlog/posts.dart';
 import 'package:paperlog/types.dart';
-import 'package:window_size/window_size.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  findSystemLocale().then((value) {
-    runApp(const PaperLogApp(app: fakeApp));
-  });
+void main() async {
+  await findSystemLocale();
+  await dotenv.load(fileName: '.env');
+
+  runApp(const PaperLogApp(app: fakeApp));
 }
 
 class PaperLogApp extends StatelessWidget {
@@ -31,7 +32,6 @@ class PaperLogApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppInfo appInfo = app.info!;
-    setWindowTitle(appInfo.name);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -105,19 +105,19 @@ class MainDrawer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
           child: Text(
-            'Tags',
+            'Categories',
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
         const NavigationDrawerDestination(
           icon: Icon(Icons.label_outline),
-          selectedIcon: Icon(Icons.label),
-          label: Text('data'),
+          selectedIcon: Icon(Icons.folder),
+          label: Text('이것 저것'),
         ),
         const NavigationDrawerDestination(
           icon: Icon(Icons.label_outline),
           selectedIcon: Icon(Icons.label),
-          label: Text('data'),
+          label: Text('미분류'),
         ),
       ],
     );

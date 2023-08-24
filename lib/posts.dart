@@ -1,16 +1,40 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:paperlog/api.dart';
 import 'package:paperlog/layout.dart';
 import 'package:paperlog/types.dart';
 import 'package:paperlog/fake_data.dart';
 import 'package:paperlog/poster.dart';
 import 'package:uuid/uuid.dart';
 
-class Posts extends StatelessWidget {
+class Posts extends StatefulWidget {
   const Posts({super.key});
 
   @override
+  State<Posts> createState() => _PostsState();
+}
+
+class _PostsState extends State<Posts> {
+  List<Post> posts = [];
+
+  @override
   Widget build(BuildContext context) {
+    if (posts.isEmpty) {
+      getPosts().then((value) {
+        List<dynamic> contents = jsonDecode(value.body)['content'];
+        setState(() {
+          posts = contents
+              .map((e) => Post(
+                  author: e['author'],
+                  createdAt: DateTime.parse(e['createdAt']),
+                  content: e['content']))
+              .toList();
+        });
+      });
+    }
+
     return ListView.builder(
       itemBuilder: (context, index) => Screen(
         child: PostCard(

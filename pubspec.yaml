@@ -15,12 +15,8 @@ dependencies:
   intl: ^0.18.0
   cupertino_icons: ^1.0.2
   uuid: ^3.0.7
-  markdown_editable_textinput: ^2.2.0
-  window_size:
-    git:
-      url: https://github.com/google/flutter-desktop-embedding.git
-      path: plugins/window_size
-      ref: 5c51870ced62a00e809ba4b81a846a052d241c9f
+  flutter_dotenv: ^5.1.0
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +25,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - .env

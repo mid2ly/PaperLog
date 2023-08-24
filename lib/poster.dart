@@ -79,9 +79,9 @@ class PosterContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(30),
             child: Hero(
-              tag: 'post-title-${uuid}',
+              tag: 'post-title-$uuid',
               child: Center(
-                child: Text(
+                child: SelectableText(
                   post.getTitle(),
                   style: titleStyle,
                 ),
@@ -93,8 +93,8 @@ class PosterContainer extends StatelessWidget {
             child: Row(
               children: [
                 Hero(
-                  tag: 'post-datetime-${uuid}',
-                  child: Text(
+                  tag: 'post-datetime-$uuid',
+                  child: SelectableText(
                     DateFormat.yMMMMEEEEd().format(post.createdAt),
                     style: labelStyle,
                   ),
@@ -110,8 +110,8 @@ class PosterContainer extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Hero(
-                  tag: 'post-author-${uuid}',
-                  child: Text(
+                  tag: 'post-author-$uuid',
+                  child: SelectableText(
                     post.author,
                     style: labelStyle,
                   ),
